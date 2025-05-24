@@ -1,3 +1,27 @@
+/* 基础文字样式 */
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Arial, sans-serif; /* 中文字体优先 */
+    font-size: 16px; /* 基础字号 */
+    line-height: 1.6; /* 行间距 */
+    color: #333; /* 主文字颜色 */
+}
+
+/* 标题控制 */
+h1 {
+    font-size: 2.5em; /* 约40px (16px * 2.5) */
+    text-align: center; /* 居中显示 */
+    margin: 30px 0; /* 上下边距30px 左右0 */
+    color: #2c3e50; /* 深蓝色 */
+}
+
+/* 段落控制 */
+p {
+    font-size: 1.1em; /* 约17.6px */
+    text-align: justify; /* 两端对齐 */
+    max-width: 800px; /* 最大宽度限制 */
+    margin: 20px auto; /* 上下20px 左右自动居中 */
+    padding: 0 15px; /* 左右内边距 */
+}
 /* 基础样式 */
 body {
     font-family: 'Microsoft YaHei', Arial, sans-serif;
