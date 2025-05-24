@@ -1,9 +1,60 @@
 /* 基础文字样式 */
 body {
-    font-family: 'Microsoft YaHei', 'Segoe UI', Arial, sans-serif; /* 中文字体优先 */
+    font-family: 'Microsoft YaHei', 'Simsun','Segoe UI', Arial, sans-serif; /* 中文字体优先 */
     font-size: 16px; /* 基础字号 */
     line-height: 1.6; /* 行间距 */
     color: #333; /* 主文字颜色 */
+}
+
+/* ================= 字体定义 ================= */
+/**
+ * 字体名称：竹林（替换为实际字体名）
+ * 字重：400 - 常规
+ * 路径：../fonts/ 表示从css目录向上级查找fonts文件夹
+ */
+@font-face {
+    font-family: 'ZhuLin';  /* 自定义字体族名称 */
+    src: 
+        /* 现代浏览器优先使用woff2格式 */
+        url('../fonts/YourFontName-Regular.woff2') format('woff2'),
+        /* 旧浏览器备用方案 */
+        url('../fonts/YourFontName-Regular.woff') format('woff');
+    font-weight: 400;             /* 对应normal字重 */
+    font-style: normal;           /* 正体 */
+    font-display: swap;           /* 避免布局偏移 */
+}
+
+/**
+ * 粗体字重：700 
+ */
+@font-face {
+    font-family: 'YourFontName';
+    src: 
+        url('../fonts/YourFontName-Bold.woff2') format('woff2'),
+        url('../fonts/YourFontName-Bold.woff') format('woff');
+    font-weight: 700;             /* 对应bold字重 */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ================= 字体应用 ================= */
+/* 全站基础应用 */
+body {
+    font-family: 'YourFontName', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;  /* 默认使用常规字重 */
+}
+
+/* 标题特殊样式 */
+h1, h2, h3 {
+    font-family: 'YourFontName';
+    font-weight: 700;  /* 使用粗体字重 */
+}
+
+/* 斜体特殊处理（如需要） */
+em {
+    font-family: 'YourFontName';
+    font-style: italic;
+    /* 如果字体文件包含斜体变体，需单独定义@font-face */
 }
 
 /* 标题控制 */
@@ -17,10 +68,17 @@ h1 {
 /* 段落控制 */
 p {
     font-size: 1.1em; /* 约17.6px */
-    text-align: justify; /* 两端对齐 */
+    text-align: center; /* 两端对齐 */
     max-width: 800px; /* 最大宽度限制 */
     margin: 20px auto; /* 上下20px 左右自动居中 */
     padding: 0 15px; /* 左右内边距 */
+}
+
+h2 {
+    font-size: 1.6em; /* 约40px (16px * 2.5) */
+    text-align: center; /* 居中显示 */
+    margin: 30px 0; /* 上下边距20px 左右0 */
+    color: #2c3e50; /* 深蓝色 */
 }
 /* 容器布局 */
 .container {
