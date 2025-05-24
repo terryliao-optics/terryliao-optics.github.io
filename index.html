@@ -1,86 +1,15 @@
-<!DOCTYPE html>  <!-- 声明文档类型为HTML5 -->
-<html lang="zh-CN">  <!-- 设置文档语言为中文 -->
+<!DOCTYPE html>  <!-- 必须首行声明，标识HTML5文档类型 -->
+<html lang="zh-CN">  <!-- 根标签，lang属性指定语言（中文简体） -->
 <head>
-    <!-- 头部开始：包含元数据和外部资源链接 -->
-    <meta charset="UTF-8">  <!-- 设置字符编码为UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- 响应式视口设置 -->
-    <title>张三的个人主页</title>  <!-- 浏览器标签显示的标题 -->
-    
-    <!-- 引入CSS样式表 -->
-    <link rel="stylesheet" href="css/style.css">  <!-- 连接外部CSS文件 -->
-    
-    <!-- 预加载字体图标库（可选） -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 元数据区域：不会直接显示在页面上 -->
+    <meta charset="UTF-8">  <!-- 必须的字符编码声明 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网站</title>  <!-- 浏览器标签页标题 -->
+    <link rel="stylesheet" href="css/style.css">  <!-- 引入CSS样式表 -->
 </head>
-
 <body>
-    <!-- ========== 导航栏 ========== -->
-    <nav class="navbar">
-        <ul>  <!-- 无序列表实现导航菜单 -->
-            <li><a href="index.html"><i class="fas fa-home"></i> 主页</a></li>  <!-- 带图标的首页链接 -->
-            <li><a href="research.html"><i class="fas fa-flask"></i> 研究</a></li>
-            <li><a href="blog.html"><i class="fas fa-blog"></i> 博客</a></li>
-            <li><a href="life.html"><i class="fas fa-camera"></i> 生活</a></li>
-        </ul>
-    </nav>
-
-    <!-- ========== 主体内容容器 ========== -->
-    <div class="container">
-        <!-- 个人信息区块 -->
-        <header class="profile-header">
-            <img src="images/avatar.jpg" alt="张三的头像" class="profile-img">  <!-- 头像图片 -->
-            <h1>张三</h1>  <!-- 主标题 -->
-            <p class="subtitle">人工智能研究员 | XX大学</p>  <!-- 副标题 -->
-        </header>
-
-        <!-- 联系方式区块 -->
-        <section class="contact-section">
-            <h2><i class="fas fa-envelope"></i> 联系我</h2>  <!-- 带图标的次级标题 -->
-            <ul>
-                <li>邮箱：<a href="mailto:zhangsan@university.edu">zhangsan@university.edu</a></li>
-                <li>GitHub：<a href="https://github.com/yourname">github.com/yourname</a></li>
-                <li>领英：<a href="#">LinkedIn个人主页</a></li>
-            </ul>
-        </section>
-
-        <!-- 最新动态区块 -->
-        <section class="news-section">
-            <h2><i class="fas fa-bullhorn"></i> 最新动态</h2>
-            <article class="news-item">  <!-- 独立的文章内容 -->
-                <h3>2023年10月：论文发表</h3>
-                <p>在《人工智能前沿》期刊发表论文《深度学习新方法》...</p>
-                <a href="research.html#paper1" class="read-more">阅读全文 →</a>
-            </article>
-        </section>
-
-        <!-- 视频展示区块 -->
-        <section class="video-section">
-            <h2><i class="fas fa-video"></i> 最新演讲视频</h2>
-            <div class="video-container">
-                <!-- YouTube视频嵌入代码 -->
-                <iframe 
-                    src="https://www.youtube.com/embed/视频ID" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </section>
-    </div>
-
-    <!-- ========== 页脚 ========== -->
-    <footer class="site-footer">
-        <p>&copy; 2023 张三 保留所有权利</p>  <!-- 版权声明 -->
-        <p>网站访问量：<span id="visitor-count">0000</span></p>  <!-- 访问计数器 -->
-    </footer>
-
-    <!-- ========== JavaScript脚本 ========== -->
-    <script>
-        // 简单访问计数器（示例）
-        let count = localStorage.getItem('visitorCount') || 1000;
-        count++;
-        document.getElementById('visitor-count').textContent = count;
-        localStorage.setItem('visitorCount', count);
-    </script>
+    <!-- 页面可见内容 -->
+    <h1>欢迎来到我的网站</h1>
+    <p>这是我的第一个段落。</p>
 </body>
 </html>
