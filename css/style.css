@@ -2,7 +2,7 @@
 body {
     font-family: 'Microsoft YaHei', 'Simsun','Segoe UI', Arial, sans-serif; /* 中文字体优先 */
     font-size: 16px; /* 基础字号 */
-    line-height: 1.6; /* 行间距 */
+    line-height: 2.2; /* 行间距 */
     color: #333; /* 主文字颜色 */
 }
 
@@ -40,8 +40,16 @@ body {
 /* ================= 字体应用 ================= */
 /* 全站基础应用 */
 body {
+    /* 保留原有所有属性，例如： */
     font-family: 'YourFontName', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;  /* 默认使用常规字重 */
+    font-weight: 400;
+
+    /* 添加动态背景 */
+    background: linear-gradient(45deg, #f6d5f7, #fbe9d7, #d4e6f1, #e0f2e9);
+    background-size: 400% 400%;
+    animation: gentleShift 15s ease infinite;
+
+    /* 可选：确保背景不影响文字阅读，文字颜色已设置，背景尽量浅 */
 }
 
 /* 标题特殊样式 */
@@ -62,7 +70,7 @@ h1 {
     font-size: 2.5em; /* 约40px (16px * 2.5) */
     text-align: center; /* 居中显示 */
     margin: 30px 0; /* 上下边距30px 左右0 */
-    color: #2c3e50; /* 深蓝色 */
+    color: #2E8B57; /* 深蓝色 */
 }
 
 /* 段落控制 */
@@ -78,7 +86,7 @@ h2 {
     font-size: 1.6em; /* 约40px (16px * 2.5) */
     text-align: center; /* 居中显示 */
     margin: 30px 0; /* 上下边距20px 左右0 */
-    color: #2c3e50; /* 深蓝色 */
+    color: #2E8B57; /* 深蓝色 */
 }
 /* 容器布局 */
 .container {
@@ -91,3 +99,8 @@ h2 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 阴影效果 */
 }
 
+@keyframes gentleShift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
