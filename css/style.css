@@ -75,7 +75,7 @@ h1 {
 
 /* 段落控制 */
 p {
-    font-size: 1.1em; /* 约17.6px */
+    font-size: 1.4em; /* 约17.6px */
     text-align: center; /* 两端对齐 */
     max-width: 800px; /* 最大宽度限制 */
     margin: 20px auto; /* 上下20px 左右自动居中 */
@@ -90,13 +90,13 @@ h2 {
 }
 /* 容器布局 */
 .container {
-    width: 90%; /* 相对宽度 */
+    width: 80%; /* 相对宽度 */
     max-width: 1200px; /* 最大宽度限制 */
-    margin: 0 auto; /* 水平居中 */
+    margin: 40px atuo 10px auto; /* 水平居中 */
     padding: 20px;
     background-color: #f8f9fa; /* 浅灰背景 */
     border-radius: 10px; /* 圆角效果 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 阴影效果 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 阴影效果 */
 }
 
 @keyframes gentleShift {
