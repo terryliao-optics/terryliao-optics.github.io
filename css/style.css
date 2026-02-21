@@ -108,7 +108,7 @@ h2 {
 /* 兴趣爱好网格容器 */
 .hobby-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 响应式：每列最小150px，自动填充 */
+    grid-template-columns: repeat(4, 1fr); /* 响应式：每列最小150px，自动填充 */
     gap: 20px;           /* 格子间距 */
     margin-top: 20px;
 }
