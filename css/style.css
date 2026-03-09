@@ -1,148 +1,350 @@
-/* 基础文字样式 */
+/* ===== CSS Variables ===== */
+:root {
+    --sidebar-width: 16.666%;   /* 1/6 of viewport */
+    --main-width: 83.333%;      /* 5/6 of viewport */
+    --green: #2E8B57;
+    --green-light: #4aab75;
+    --green-dark: #1e6b3f;
+    --text: #2c2c2c;
+    --text-light: #666;
+    --bg: #f9f7f4;
+    --white: #ffffff;
+    --sidebar-bg: #1a2e22;
+    --sidebar-text: #d6e8dc;
+    --card-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    --font-main: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+    --font-en: 'Cormorant Garamond', 'Georgia', serif;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
 body {
-    font-family: 'Microsoft YaHei', 'Simsun','Segoe UI', Arial, sans-serif; /* 中文字体优先 */
-    font-size: 16px; /* 基础字号 */
-    line-height: 2.2; /* 行间距 */
-    color: #333; /* 主文字颜色 */
+    font-family: var(--font-main);
+    font-size: 16px;
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    min-height: 100vh;
 }
 
-/* ================= 字体定义 ================= */
-/**
- * 字体名称：竹林（替换为实际字体名）
- * 字重：400 - 常规
- * 路径：../fonts/ 表示从css目录向上级查找fonts文件夹
- */
-@font-face {
-    font-family: 'ZhuLin';  /* 自定义字体族名称 */
-    src: 
-        /* 现代浏览器优先使用woff2格式 */
-        url('../fonts/YourFontName-Regular.woff2') format('woff2'),
-        /* 旧浏览器备用方案 */
-        url('../fonts/YourFontName-Regular.woff') format('woff');
-    font-weight: 400;             /* 对应normal字重 */
-    font-style: normal;           /* 正体 */
-    font-display: swap;           /* 避免布局偏移 */
+/* ===== Sidebar ===== */
+#sidebar {
+    width: var(--sidebar-width);
+    min-width: 140px;
+    max-width: 220px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 30px 0;
+    z-index: 100;
+    box-shadow: 3px 0 18px rgba(0,0,0,0.18);
+    overflow-y: auto;
 }
 
-/**
- * 粗体字重：700 
- */
-@font-face {
-    font-family: 'YourFontName';
-    src: 
-        url('../fonts/YourFontName-Bold.woff2') format('woff2'),
-        url('../fonts/YourFontName-Bold.woff') format('woff');
-    font-weight: 700;             /* 对应bold字重 */
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ================= 字体应用 ================= */
-/* 全站基础应用 */
-body {
-    /* 保留原有所有属性，例如： */
-    font-family: 'YourFontName', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
-
-    /* 添加动态背景 */
-    background: linear-gradient(45deg, #f6d5f7, #fbe9d7, #d4e6f1, #e0f2e9);
-    background-size: 400% 400%;
-    animation: gentleShift 15s ease infinite;
-
-    /* 可选：确保背景不影响文字阅读，文字颜色已设置，背景尽量浅 */
-}
-
-/* 标题特殊样式 */
-h1, h2, h3 {
-    font-family: 'YourFontName';
-    font-weight: 700;  /* 使用粗体字重 */
-}
-
-/* 斜体特殊处理（如需要） */
-em {
-    font-family: 'YourFontName';
-    font-style: italic;
-    /* 如果字体文件包含斜体变体，需单独定义@font-face */
-}
-
-/* 标题控制 */
-h1 {
-    font-size: 2.5em; /* 约40px (16px * 2.5) */
-    text-align: center; /* 居中显示 */
-    margin: 30px 0; /* 上下边距30px 左右0 */
-    color: #2E8B57; /* 深蓝色 */
-}
-
-/* 段落控制 */
-p {
-    font-size: 1.4em; /* 约17.6px */
-    text-align: center; /* 两端对齐 */
-    max-width: 1000px; /* 最大宽度限制 */
-    margin: 20px auto; /* 上下20px 左右自动居中 */
-    padding: 0 15px; /* 左右内边距 */
-}
-
-h2 {
-    font-size: 1.6em; /* 约40px (16px * 2.5) */
-    text-align: center; /* 居中显示 */
-    margin: 30px 0; /* 上下边距20px 左右0 */
-    color: #2E8B57; /* 深蓝色 */
-}
-/* 容器布局 */
-.container {
-    width: 80%; /* 相对宽度 */
-    max-width: 1200px; /* 最大宽度限制 */
-    margin: 0 auto; /* 水平居中 */
-    padding: 20px;
-    background-color: #f8f9fa; /* 浅灰背景 */
-    border-radius: 10px; /* 圆角效果 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 阴影效果 */
-}
-
-@keyframes gentleShift {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-}
-
-/* 兴趣爱好网格容器 */
-.hobby-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 响应式：每列最小150px，自动填充 */
-    gap: 20px;           /* 格子间距 */
-    margin-top: 20px;
-}
-
-/* 每个兴趣卡片（链接） */
-.hobby-card {
-    display: block;          /* 使链接占满整个格子 */
-    text-align: center;
-    text-decoration: none;   /* 去掉下划线 */
-    color: #333;             /* 文字颜色 */
-    background-color: white; /* 卡片背景色 */
-    border-radius: 12px;     /* 圆角 */
-    padding: 15px 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s; /* 悬停动画 */
-}
-
-.hobby-card:hover {
-    transform: translateY(-5px);  /* 上浮效果 */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* 卡片中的图片 */
-.hobby-card img {
-    width: 100%;               /* 图片宽度占满卡片 */
-    max-width: 120px;          /* 限制最大尺寸，保持统一 */
-    height: auto;
-    border-radius: 50%;        /* 圆形图片，也可以改成圆角矩形 */
-    margin-bottom: 10px;
-}
-
-/* 卡片中的文字 */
-.hobby-card span {
+/* Site logo / home link */
+#sidebar .site-logo {
     display: block;
+    text-align: center;
+    padding: 28px 16px 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    text-decoration: none;
+    color: var(--white);
+    letter-spacing: 0.12em;
+    font-family: var(--font-en);
+    font-size: 1.18em;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+#sidebar .site-logo:hover { color: #a8d5b5; }
+
+/* Nav sections */
+#sidebar nav { flex: 1; padding: 18px 0; }
+
+#sidebar .nav-section { margin-bottom: 8px; }
+
+#sidebar .nav-main-link {
+    display: block;
+    padding: 11px 22px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 0.97em;
+    letter-spacing: 0.06em;
+    border-left: 3px solid transparent;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+#sidebar .nav-main-link:hover,
+#sidebar .nav-main-link.active {
+    background: rgba(255,255,255,0.07);
+    border-left-color: #7ecf9d;
+    color: #cff0dc;
+}
+
+/* Dropdown sub-nav */
+#sidebar .nav-sub {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background: rgba(0,0,0,0.15);
+}
+#sidebar .nav-section.open .nav-sub { max-height: 400px; }
+
+#sidebar .nav-sub li a {
+    display: block;
+    padding: 8px 22px 8px 34px;
+    color: #aec9b8;
+    text-decoration: none;
+    font-size: 0.88em;
+    letter-spacing: 0.04em;
+    transition: color 0.2s, background 0.2s;
+}
+#sidebar .nav-sub li a:hover {
+    color: #d4f0df;
+    background: rgba(255,255,255,0.06);
+}
+
+/* Toggle arrow */
+.nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+}
+.nav-toggle::after {
+    content: '›';
     font-size: 1.1em;
-    font-weight: 500;
+    margin-right: 16px;
+    transition: transform 0.3s;
+    opacity: 0.6;
+}
+.nav-section.open .nav-toggle::after { transform: rotate(90deg); }
+
+/* ===== Main Content Area ===== */
+#main {
+    margin-left: var(--sidebar-width);
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Hero Section ===== */
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    /* 
+     * ===== 替换主页背景图片的方法 =====
+     * 将你自己的图片文件（如 hero.jpg）放入网站根目录的 images/ 文件夹中，
+     * 然后将下面这行改为：
+     * background-image: url('../images/hero.jpg');
+     * 目前使用渐变色作为占位符。
+     */
+    background: linear-gradient(135deg, #1a3a28 0%, #2e6b47 40%, #4a9a6a 70%, #a8d5b5 100%);
+    background-size: cover;
+    background-position: center;
+    filter: blur(0px);   /* 如果你的图片太杂乱可以改成 blur(3px) */
+    transform: scale(1.04);
+    transition: filter 0.5s;
+}
+
+/* 半透明遮罩，让标题更清晰 */
+#hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 30, 18, 0.42);
+}
+
+#hero .hero-title {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+}
+
+#hero .hero-title h1 {
+    font-family: var(--font-main);
+    font-size: clamp(2em, 4vw, 3.2em);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    line-height: 1.4;
+}
+
+#hero .hero-title .subtitle {
+    margin-top: 14px;
+    font-size: 1.05em;
+    letter-spacing: 0.22em;
+    opacity: 0.82;
+    font-family: var(--font-en);
+}
+
+/* Scroll hint arrow */
+#hero .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.78em;
+    letter-spacing: 0.12em;
+    animation: bounce 2s infinite;
+}
+#hero .scroll-hint svg { opacity: 0.7; }
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== Page Content (below hero, or sub-pages) ===== */
+#page-content {
+    padding: 56px 60px 80px;
+    max-width: 1100px;
+}
+
+/* ===== Profile Section (个人简介) ===== */
+.profile-section {
+    display: flex;
+    gap: 52px;
+    align-items: flex-start;
+}
+
+/* 圆形照片区域 */
+.profile-photo {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #111;   /* 占位纯黑 */
+    overflow: hidden;
+    box-shadow: 0 6px 28px rgba(0,0,0,0.22);
+    border: 4px solid var(--green);
+    position: relative;
+    /*
+     * ===== 替换圆形照片的方法 =====
+     * 方式一（推荐）：将 <div class="profile-photo"> 改为
+     *   <img class="profile-photo" src="images/your-photo.jpg" alt="Terry Liao">
+     * 方式二：在 CSS 中添加：
+     *   background-image: url('../images/your-photo.jpg');
+     *   background-size: cover;
+     *   background-position: center;
+     */
+}
+
+/* 照片占位文字提示 */
+.profile-photo::after {
+    content: '点击添加照片';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.78em;
+    letter-spacing: 0.06em;
+}
+
+.profile-text { flex: 1; }
+
+.profile-text h2 {
+    font-size: 1.7em;
+    color: var(--green-dark);
+    margin-bottom: 22px;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid #c8e6d4;
+    padding-bottom: 10px;
+}
+
+.profile-text .placeholder-block {
+    background: #e8f3ec;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    color: #7aab8a;
+    font-size: 0.95em;
+    line-height: 2;
+    letter-spacing: 0.04em;
+}
+
+/* ===== Generic sub-page content ===== */
+.page-header {
+    border-bottom: 2px solid #c8e6d4;
+    padding-bottom: 14px;
+    margin-bottom: 38px;
+}
+.page-header h2 {
+    font-size: 1.8em;
+    color: var(--green-dark);
+    letter-spacing: 0.10em;
+}
+.page-header p {
+    margin-top: 8px;
+    color: var(--text-light);
+    font-size: 0.95em;
+    letter-spacing: 0.04em;
+}
+
+.placeholder-block {
+    background: #e8f3ec;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    color: #7aab8a;
+    font-size: 0.95em;
+    line-height: 2;
+    letter-spacing: 0.04em;
+}
+
+/* ===== Hobby sub-page cards ===== */
+.hobby-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 18px;
+}
+.hobby-card-inner {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+}
+.hobby-card-inner h3 { color: var(--green); margin-bottom: 10px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    #sidebar { width: 200px; min-width: 200px; }
+    #main { margin-left: 200px; }
+    #page-content { padding: 36px 28px 60px; }
+    .profile-section { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 600px) {
+    body { flex-direction: column; }
+    #sidebar { position: relative; width: 100%; max-width: 100%; height: auto; }
+    #main { margin-left: 0; }
+    #hero { height: 60vh; }
+    .hobby-intro { grid-template-columns: 1fr; }
 }
