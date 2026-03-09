@@ -1,55 +1,77 @@
-<!DOCTYPE html>  <!-- 必须首行声明，标识HTML5文档类型 -->
-<html lang="zh-CN">  <!-- 根标签，lang属性指定语言（中文简体） -->
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <!-- 元数据区域：不会直接显示在页面上 -->
-    <meta charset="UTF-8">  <!-- 必须的字符编码声明 -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>  <!-- 浏览器标签页标题 -->
-    <link rel="stylesheet" href="css/style.css">  <!-- 引入CSS样式表 -->
+    <title>Terry Liao — 个人网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* index 专用：主页正文区域在 hero 下方 */
+        #page-content {
+            padding: 70px 60px 100px;
+        }
+        .home-intro-text {
+            max-width: 700px;
+            line-height: 2.2;
+            font-size: 1.05em;
+            color: #444;
+            letter-spacing: 0.04em;
+        }
+        .home-intro-text p { margin-bottom: 1.4em; }
+        .section-label {
+            display: inline-block;
+            font-family: var(--font-en);
+            font-size: 0.82em;
+            letter-spacing: 0.18em;
+            color: var(--green);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--green);
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <!-- 页面可见内容 -->
-    <h1>欢迎来到阿廖沙的个人网站</h1>
-    <p>阿廖沙是一名光学工程师，他的工作内容包括物理光学的仿真与量检测算法的应用
-        <br>阿廖沙在工作之外有很多兴趣爱好，比如足球、乒乓球、数学、书法、文学、声乐、历史，你可以在本页上查询阿廖沙关于这些内容的分享
-        <br>阿廖沙正在学习法语，也许以后还会学习意大利语和西班牙语，会说这么多语言是很酷的事</p>
-     <div class="container">
-    <h2>我的兴趣爱好</h2>
-    <div class="hobby-grid">
-    <a href="hobbies/football.html" class="hobby-card">
-        <img src="images/football.jpg" alt="足球">
-        <span>足球</span>
-    </a>
-    <a href="hobbies/pingpong.html" class="hobby-card">
-        <img src="images/pingpong.jpg" alt="乒乓球">
-        <span>乒乓球</span>
-    </a>
-    <a href="hobbies/math.html" class="hobby-card">
-        <img src="images/math.jpg" alt="数学">
-        <span>数学</span>
-    </a>
-    <a href="hobbies/calligraphy.html" class="hobby-card">
-        <img src="images/calligraphy.jpg" alt="书法">
-        <span>书法</span>
-    </a>
-    <!-- 新添加的 -->
-    <a href="hobbies/literature.html" class="hobby-card">
-        <img src="images/literature.jpg" alt="文学">
-        <span>文学</span>
-    </a>
-    <a href="hobbies/vocal.html" class="hobby-card">
-        <img src="images/vocal.jpg" alt="声乐">
-        <span>声乐</span>
-    </a>
-    <a href="hobbies/history.html" class="hobby-card">
-        <img src="images/history.jpg" alt="历史">
-        <span>社科</span>
-    </a>
-    <a href="hobbies/history.html" class="hobby-card">
-        <img src="images/history.jpg" alt="历史">
-        <span>光学</span>
-    </a>
-</div>
-</div>
+
+<!-- ========== 侧边栏 ========== -->
+<aside id="sidebar"></aside>
+
+<!-- ========== 主内容 ========== -->
+<main id="main">
+
+    <!-- Hero 全屏背景区 -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-title">
+            <h1>欢迎来到阿廖沙的个人网站</h1>
+            <p class="subtitle">Terry Liao · Optics Engineer · Explorer</p>
+        </div>
+
+        <!-- 向下滚动提示 -->
+        <div class="scroll-hint">
+            <span>向下滚动</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Hero 下方：简短自我介绍（主页） -->
+    <section id="page-content">
+        <span class="section-label">About</span>
+        <div class="home-intro-text">
+            <p>内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。</p>
+            <p>内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。</p>
+            <p>内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。</p>
+        </div>
+    </section>
+
+</main>
+
+<script src="js/sidebar.js"></script>
 </body>
 </html>
