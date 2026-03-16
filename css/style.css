@@ -164,7 +164,7 @@ body {
     background-size: cover;
     background-position: center;
     filter: blur(0px);   /* 如果你的图片太杂乱可以改成 blur(3px) */
-    transform: scale(1.04);
+    transform: scale(1.18);
     transition: filter 0.5s;
 }
 
