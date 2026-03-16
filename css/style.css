@@ -157,7 +157,7 @@ body {
      * background-image: url('../images/hero.jpg');
      * 目前使用渐变色作为占位符。
      */
-    background-image: url('../images/hero.jpg');
+    background-image: url('../images/bg_catsea.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(4px);
