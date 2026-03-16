@@ -160,7 +160,7 @@ body {
      * background-image: url('../images/hero.jpg');
      * 目前使用渐变色作为占位符。
      */
-    background-image: url('../Images/bg_catsea.jpg');
+    background-image: url('../Images/flower.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(4px);
