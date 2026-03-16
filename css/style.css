@@ -255,6 +255,7 @@ body {
      *   background-size: cover;
      *   background-position: center;
      */
+    object-fit: cover;
 }
 
 /* 照片占位文字提示 */
