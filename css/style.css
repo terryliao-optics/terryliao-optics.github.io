@@ -140,35 +140,27 @@ body {
 /* ===== Hero Section ===== */
 #hero {
     position: relative;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-1 * var(--sidebar-width));
     height: 100vh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 0;
-    padding-left: 0;
 }
 
 #hero .hero-bg {
     position: absolute;
-    inset: 0;
-    /* 
-     * ===== 替换主页背景图片的方法 =====
-     * 将你自己的图片文件（如 hero.jpg）放入网站根目录的 images/ 文件夹中，
-     * 然后将下面这行改为：
-     * background-image: url('../images/hero.jpg');
-     * 目前使用渐变色作为占位符。
-     */
-    background-image: url('../Images/flower.jpg');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Images/bg_catsea.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(4px);
-    background-size: cover;
-    background-position: center;
-    filter: blur(0px);   /* 如果你的图片太杂乱可以改成 blur(3px) */
     transform: scale(1.18);
-    transition: filter 0.5s;
+    transform-origin: center center;
 }
 
 /* 半透明遮罩，让标题更清晰 */
