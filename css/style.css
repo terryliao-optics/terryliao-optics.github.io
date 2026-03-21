@@ -129,7 +129,7 @@ body {
 
 /* ===== Main Content Area ===== */
 #main {
-    margin-left: 120px;   /* 固定值，不用百分比 */
+    margin-left: calc(180px + 120px);
     min-width: 0;
     flex: 1;
     display: flex;
@@ -140,8 +140,8 @@ body {
 /* ===== Hero Section ===== */
 #hero {
     position: relative;
-    width: calc(100vw - 120px);
-    margin-left: -80px;
+    width: 100%;
+    margin-left: 0;
     height: 100vh;
     overflow: hidden;
     display: flex;
