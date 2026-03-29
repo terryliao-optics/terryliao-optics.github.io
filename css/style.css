@@ -185,10 +185,6 @@ body {
     text-shadow: 0 4px 24px rgba(0,0,0,0.5);
     line-height: 1.4;
     color: #CFB53B;
-    background: linear-gradient(135deg, #BFA020, #E8C84A, #CFB53B, #F5D76E);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 #hero .hero-title .subtitle {
@@ -198,10 +194,6 @@ body {
     letter-spacing: 0.22em;
     opacity: 0.88;
     color: #CFB53B;
-    background: linear-gradient(135deg, #BFA020, #E8C84A, #CFB53B, #F5D76E);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 /* Scroll hint arrow */
