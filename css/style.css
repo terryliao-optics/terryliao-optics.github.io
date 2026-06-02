@@ -349,3 +349,12 @@ body {
     #hero { height: 60vh; }
     .hobby-intro { grid-template-columns: 1fr; }
 }
+
+.article-body p {
+    text-indent: 2em;
+    margin-bottom: 1.5em;
+}
+
+.article-body p.no-indent {
+    text-indent: 0;
+}
