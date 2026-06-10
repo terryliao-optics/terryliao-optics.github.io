@@ -350,11 +350,16 @@ body {
     .hobby-intro { grid-template-columns: 1fr; }
 }
 
-.article-body p {
+.article-body {
     max-width: 900px;
-    line-height: 2.4;
     font-size: 1.25em;
+    line-height: 2.4;
     letter-spacing: 0.04em;
+}
+
+.article-body p {
+    text-indent: 2em;
+    margin-bottom: 1.5em;
 }
 
 .article-body p.no-indent {
