@@ -358,8 +358,9 @@ body {
 }
 
 .article-body p {
-    text-indent: 2em;
+    text-indent: 2em !important;
     margin-bottom: 1.5em;
+    display: block;
 }
 
 .article-body p.no-indent {
