@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗恋竹石溪 — Terry Liao</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .novel-intro {
+            max-width: 700px;
+            line-height: 2;
+            color: #666;
+            margin-bottom: 36px;
+            font-size: 0.98em;
+        }
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 700px;
+        }
+        .chapter-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 22px;
+            border: 1px solid #c8e6d4;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1e6b3f;
+            background: #f4faf7;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+        }
+        .chapter-item:hover {
+            background: #e2f4ea;
+            border-color: #2E8B57;
+            transform: translateX(4px);
+        }
+        .chapter-title {
+            font-size: 1.02em;
+            letter-spacing: 0.05em;
+        }
+        .chapter-meta {
+            font-size: 0.82em;
+            color: #7aab8a;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<aside id="sidebar"></aside>
+
+<main id="main">
+    <section id="page-content">
+
+        <div class="page-header">
+            <h2>暗恋竹石溪</h2>
+            <p>长篇小说 · 文学</p>
+        </div>
+
+        <!-- 小说简介，可自行编辑或删除 -->
+        <div class="novel-intro">
+            内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。
+        </div>
+
+        <!-- 章节列表，每新增一章复制一个 chapter-item -->
+        <div class="chapter-list">
+            <a href="anlianzhushixi/chapter1.html" class="chapter-item">
+                <span class="chapter-title">第一章 · 章节标题</span>
+                <span class="chapter-meta">2026年6月</span>
+            </a>
+            <a href="anlianzhushixi/chapter2.html" class="chapter-item">
+                <span class="chapter-title">第二章 · 章节标题</span>
+                <span class="chapter-meta">2026年6月</span>
+            </a>
+        </div>
+
+    </section>
+</main>
+
+<script src="../../js/sidebar.js"></script>
+</body>
+</html>
