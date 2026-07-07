@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光学 — Terry Liao</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .optics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 900px;
+        }
+        .optics-card {
+            display: block;
+            padding: 28px 24px;
+            background: #f0f4f9;
+            border: 1px solid #b8cce0;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1a3a5c;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+        }
+        .optics-card:hover {
+            background: #ddeaf5;
+            border-color: #2a6096;
+            transform: translateY(-3px);
+        }
+        .optics-card .card-title {
+            font-size: 1.05em;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+            color: #1a3a5c;
+        }
+        .optics-card .card-desc {
+            font-size: 0.85em;
+            color: #5a7a9a;
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+        }
+        .optics-card .card-meta {
+            margin-top: 14px;
+            font-size: 0.78em;
+            color: #8aabca;
+            letter-spacing: 0.04em;
+        }
+    </style>
+</head>
+<body>
 
+<aside id="sidebar"></aside>
+
+<main id="main">
+    <section id="page-content">
+
+        <div class="page-header">
+            <h2>光学</h2>
+            <p>Optics · 神经漫游</p>
+        </div>
+
+        <div class="optics-grid">
+            <!-- 每新增一篇，复制一个 optics-card -->
+            <a href="articles/optics-article1.html" class="optics-card">
+                <div class="card-title">文章标题</div>
+                <div class="card-desc">内容待添加，这里可以写一两句文章简介。</div>
+                <div class="card-meta">2026年6月</div>
+            </a>
+            <a href="articles/optics-article2.html" class="optics-card">
+                <div class="card-title">文章标题</div>
+                <div class="card-desc">内容待添加，这里可以写一两句文章简介。</div>
+                <div class="card-meta">2026年6月</div>
+            </a>
+        </div>
+
+    </section>
+</main>
+
+<script src="../js/sidebar.js"></script>
+</body>
+</html>
