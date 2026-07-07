@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学 — Terry Liao</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
+<aside id="sidebar"></aside>
+
+<main id="main">
+    <section id="page-content">
+
+        <div class="page-header">
+            <h2>数学</h2>
+            <p>Mathematics · 神经漫游</p>
+        </div>
+
+        <div class="article-list">
+            <!-- 每新增一篇文章或笔记，复制一个 article-item -->
+            <a href="articles/math-article1.html" class="article-item">
+                <span class="article-title">文章标题</span>
+                <span class="article-meta">2026年6月</span>
+            </a>
+        </div>
+
+    </section>
+</main>
+
+<style>
+    .article-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 700px;
+    }
+    .article-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border: 1px solid #c8e6d4;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #1e6b3f;
+        background: #f4faf7;
+        transition: background 0.2s, border-color 0.2s;
+    }
+    .article-item:hover {
+        background: #e2f4ea;
+        border-color: #2E8B57;
+    }
+    .article-title {
+        font-size: 1em;
+        letter-spacing: 0.06em;
+    }
+    .article-meta {
+        font-size: 0.85em;
+        color: #7aab8a;
+        letter-spacing: 0.04em;
+    }
+</style>
+
+<script src="../js/sidebar.js"></script>
+</body>
+</html>
