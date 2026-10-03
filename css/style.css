@@ -246,9 +246,9 @@ body {
     /*
      * ===== 替换圆形照片的方法 =====
      * 方式一（推荐）：将 <div class="profile-photo"> 改为
-     *   <img class="profile-photo" src="images/your-photo.jpg" alt="Terry Liao">
+     *   <img class="profile-photo" src="Images/your-photo.jpg" alt="Terry Liao">
      * 方式二：在 CSS 中添加：
-     *   background-image: url('../images/your-photo.jpg');
+     *   background-image: url('../Images/your-photo.jpg');
      *   background-size: cover;
      *   background-position: center;
      */

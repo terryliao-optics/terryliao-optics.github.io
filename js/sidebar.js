@@ -15,9 +15,9 @@
             <span class="nav-main-link nav-toggle">万象天地</span>
             <ul class="nav-sub">
                 <li><a href="/hobbies/football.html">足球</a></li>
-                <li><a href="/hobbies/pingpong.html">乒乓球</a></li>
+                <li><a href="/hobbies/tabletennis.html">乒乓球</a></li>
                 <li><a href="/hobbies/music.html">音乐</a></li>
-                <li><a href="/hobbies/social.html">社科</a></li>
+                <li><a href="/hobbies/socialscience.html">社科</a></li>
             </ul>
         </div>
         <div class="nav-section nav-toggle-section" id="shenjing-section">
@@ -47,8 +47,8 @@
         });
 
         // Auto-open active section based on current URL
-        if (currentPath.includes('football') || currentPath.includes('pingpong') ||
-            currentPath.includes('music') || currentPath.includes('social')) {
+        if (currentPath.includes('football') || currentPath.includes('tabletennis') ||
+            currentPath.includes('music') || currentPath.includes('socialscience')) {
             document.getElementById('wanxiang-section').classList.add('open');
         }
         if (currentPath.includes('optics') || currentPath.includes('math') ||
