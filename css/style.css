@@ -45,12 +45,67 @@
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: var(--font-main);
+    font-family: 'Hanyi Senty Song', var(--font-main);
     font-size: 16px;
     color: var(--text);
     background: var(--bg);
     display: flex;
     min-height: 100vh;
+}
+
+/* ===== 标题统一使用思源宋体 ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+}
+
+/* ===== 通用文章列表 ===== */
+.article-list { display: flex; flex-direction: column; gap: 16px; max-width: 780px; }
+.article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border: 1px solid #c8e6d4;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1e6b3f;
+    background: #f4faf7;
+    transition: background 0.2s, border-color 0.2s;
+}
+.article-item:hover { background: #e2f4ea; border-color: #2E8B57; }
+.article-title { font-size: 1em; letter-spacing: 0.06em; }
+.article-meta { font-size: 0.85em; color: #7aab8a; letter-spacing: 0.04em; white-space: nowrap; }
+.article-sub { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 0.78em; color: #9ab7a6; margin-top: 4px; letter-spacing: 0.02em; }
+
+/* ===== 中英对照（翻译作品）===== */
+.bilingual { max-width: 1700px; }
+.bilingual-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    font-family: var(--font-en);
+    font-size: 0.78em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9a9a9a;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 10px;
+    margin-bottom: 26px;
+}
+.bi-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 1.6em;
+    align-items: start;
+}
+.bi-cn { font-size: 1.12em; line-height: 2.25; letter-spacing: 0.03em; }
+.bi-en { font-family: Arial, Helvetica, sans-serif; font-size: 0.98em; line-height: 1.85; color: #333; }
+.bi-cn p, .bi-en p { margin: 0; }
+@media (max-width: 900px) {
+    .bilingual-head { grid-template-columns: 1fr; gap: 4px; }
+    .bi-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 2em; }
+    .bi-en { color: #555; border-left: 2px solid #c8e6d4; padding-left: 14px; }
 }
 
 /* ===== Sidebar ===== */
@@ -201,7 +256,7 @@ body {
 }
 
 #hero .hero-title h1 {
-    font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+    font-family: 'Noto Serif SC', 'STSong', serif;
     font-size: clamp(2.6em, 5vw, 4em);
     font-weight: 700;
     letter-spacing: 0.3125em;
@@ -212,7 +267,7 @@ body {
 
 #hero .hero-title .subtitle {
     margin-top: 14px;
-    font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+    font-family: 'Noto Serif SC', 'STSong', serif;
     font-size: 1.05em;
     letter-spacing: 0.22em;
     opacity: 0.88;
