@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Terry Liao 的家庭时光。">
+    <meta name="robots" content="noindex">
+<meta name="description" content="Terry Liao 的家庭时光（需要密码）。">
 <meta property="og:title" content="家庭时光 — Terry Liao">
 <meta property="og:description" content="Terry Liao 的家庭时光。">
 <meta property="og:type" content="website">
@@ -15,10 +16,107 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== 密码门 ===== */
+        #lock {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(249, 247, 244, 0.985);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+        #lock .lock-box {
+            background: #ffffff;
+            padding: 34px 30px 26px;
+            border-radius: 18px;
+            border: 1px solid #e3efe7;
+            box-shadow: 0 14px 44px rgba(0, 0, 0, 0.14);
+            text-align: center;
+            width: min(340px, 86vw);
+        }
+        #lock h3 {
+            font-family: 'Noto Serif SC', 'STSong', serif;
+            color: #1e6b3f;
+            margin: 0 0 6px;
+            font-size: 1.18em;
+            letter-spacing: 0.10em;
+        }
+        #lock .hint {
+            font-size: 0.82em;
+            color: #9ab7a6;
+            margin: 0 0 18px;
+            letter-spacing: 0.04em;
+        }
+        #lock input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 18px;
+            border-radius: 999px;
+            border: 1.5px solid #c8e6d4;
+            font-size: 1em;
+            outline: none;
+            text-align: center;
+            letter-spacing: 0.18em;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        #lock input:focus {
+            border-color: #2E8B57;
+            box-shadow: 0 0 0 4px rgba(46, 139, 87, 0.10);
+        }
+        #lock button {
+            margin-top: 16px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 999px;
+            background: #2E8B57;
+            color: #fff;
+            font-size: 1em;
+            letter-spacing: 0.14em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #lock button:hover { background: #1e6b3f; }
+        #lock .msg {
+            margin: 12px 0 0;
+            min-height: 1.2em;
+            font-size: 0.85em;
+            color: #c0392b;
+            letter-spacing: 0.03em;
+        }
+        #lock .back {
+            margin: 16px 0 0;
+            font-size: 0.82em;
+        }
+        #lock .back a { color: #9ab7a6; text-decoration: none; }
+        #lock .back a:hover { color: #2E8B57; }
+        @keyframes lock-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-7px); }
+            75% { transform: translateX(7px); }
+        }
+        #lock .lock-box.shake { animation: lock-shake 0.35s; }
+    </style>
 </head>
 <body>
 
 <aside id="sidebar"></aside>
+
+<!-- ===== 密码门（未解锁前覆盖页面）===== -->
+<div id="lock">
+    <div class="lock-box">
+        <h3>家庭时光</h3>
+        <p class="hint">请输入访问密码</p>
+        <input id="lock-input" type="password" placeholder="密码" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button id="lock-btn" type="button">进 入</button>
+        <p class="msg" id="lock-msg"></p>
+        <p class="back"><a href="/index.html">← 返回首页</a></p>
+    </div>
+</div>
 
 <main id="main">
     <section id="page-content">
@@ -36,5 +134,43 @@
 </main>
 
 <script src="../js/sidebar.js"></script>
+<script>
+/* 家庭时光 · 轻量密码门（前端校验，仅作防闲人查看用） */
+(function () {
+    var KEY = 'bHl6Nzc3'; // 访问口令（base64）
+    var lock = document.getElementById('lock');
+    var box = lock.querySelector('.lock-box');
+    var input = document.getElementById('lock-input');
+    var btn = document.getElementById('lock-btn');
+    var msg = document.getElementById('lock-msg');
+
+    document.body.style.overflow = 'hidden';
+
+    function unlock() {
+        lock.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    function fail() {
+        msg.textContent = '密码不正确，请重试';
+        box.classList.remove('shake');
+        void box.offsetWidth;
+        box.classList.add('shake');
+        input.value = '';
+        input.focus();
+    }
+    function attempt() {
+        var v = input.value.trim();
+        var ok = false;
+        try { ok = (v === atob(KEY)); } catch (e) { ok = false; }
+        if (ok) { unlock(); } else { fail(); }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); attempt(); }
+    });
+    input.focus();
+})();
+</script>
 </body>
 </html>
