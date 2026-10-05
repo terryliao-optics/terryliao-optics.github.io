@@ -3,102 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
-<meta name="description" content="Terry Liao 的家庭时光（需要密码）。">
-<meta property="og:title" content="家庭时光 — Terry Liao">
-<meta property="og:description" content="Terry Liao 的家庭时光。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://terryliao-optics.github.io/pages/family.html">
-<meta property="og:image" content="https://terryliao-optics.github.io/Images/flower.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://terryliao-optics.github.io/pages/family.html">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Terry Liao 的家庭时光（加密内容）。">
+    <meta property="og:title" content="家庭时光 — Terry Liao">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://terryliao-optics.github.io/pages/family.html">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://terryliao-optics.github.io/pages/family.html">
     <title>家庭时光 — Terry Liao</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== 密码门 ===== */
         #lock {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
             background: rgba(249, 247, 244, 0.985);
-            -webkit-backdrop-filter: blur(4px);
-            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
         }
         #lock .lock-box {
-            background: #ffffff;
-            padding: 34px 30px 26px;
-            border-radius: 18px;
-            border: 1px solid #e3efe7;
-            box-shadow: 0 14px 44px rgba(0, 0, 0, 0.14);
-            text-align: center;
-            width: min(340px, 86vw);
+            background: #ffffff; padding: 34px 30px 26px; border-radius: 18px;
+            border: 1px solid #e3efe7; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.14);
+            text-align: center; width: min(340px, 86vw);
         }
-        #lock h3 {
-            font-family: 'Noto Serif SC', 'STSong', serif;
-            color: #1e6b3f;
-            margin: 0 0 6px;
-            font-size: 1.18em;
-            letter-spacing: 0.10em;
-        }
-        #lock .hint {
-            font-size: 0.82em;
-            color: #9ab7a6;
-            margin: 0 0 18px;
-            letter-spacing: 0.04em;
-        }
+        #lock h3 { font-family: 'Noto Serif SC', 'STSong', serif; color: #1e6b3f; margin: 0 0 6px; font-size: 1.18em; letter-spacing: 0.10em; }
+        #lock .hint { font-size: 0.82em; color: #9ab7a6; margin: 0 0 18px; letter-spacing: 0.04em; }
         #lock input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 13px 18px;
-            border-radius: 999px;
-            border: 1.5px solid #c8e6d4;
-            font-size: 1em;
-            outline: none;
-            text-align: center;
-            letter-spacing: 0.18em;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%; box-sizing: border-box; padding: 13px 18px; border-radius: 999px;
+            border: 1.5px solid #c8e6d4; font-size: 1em; outline: none; text-align: center;
+            letter-spacing: 0.18em; transition: border-color 0.2s, box-shadow 0.2s;
         }
-        #lock input:focus {
-            border-color: #2E8B57;
-            box-shadow: 0 0 0 4px rgba(46, 139, 87, 0.10);
-        }
+        #lock input:focus { border-color: #2E8B57; box-shadow: 0 0 0 4px rgba(46, 139, 87, 0.10); }
         #lock button {
-            margin-top: 16px;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 999px;
-            background: #2E8B57;
-            color: #fff;
-            font-size: 1em;
-            letter-spacing: 0.14em;
-            cursor: pointer;
-            transition: background 0.2s;
+            margin-top: 16px; width: 100%; padding: 12px; border: none; border-radius: 999px;
+            background: #2E8B57; color: #fff; font-size: 1em; letter-spacing: 0.14em;
+            cursor: pointer; transition: background 0.2s;
         }
         #lock button:hover { background: #1e6b3f; }
-        #lock .msg {
-            margin: 12px 0 0;
-            min-height: 1.2em;
-            font-size: 0.85em;
-            color: #c0392b;
-            letter-spacing: 0.03em;
-        }
-        #lock .back {
-            margin: 16px 0 0;
-            font-size: 0.82em;
-        }
+        #lock button[disabled] { opacity: 0.6; cursor: default; }
+        #lock .msg { margin: 12px 0 0; min-height: 1.2em; font-size: 0.85em; color: #c0392b; letter-spacing: 0.03em; }
+        #lock .back { margin: 16px 0 0; font-size: 0.82em; }
         #lock .back a { color: #9ab7a6; text-decoration: none; }
         #lock .back a:hover { color: #2E8B57; }
-        @keyframes lock-shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-7px); }
-            75% { transform: translateX(7px); }
-        }
+        @keyframes lock-shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
         #lock .lock-box.shake { animation: lock-shake 0.35s; }
     </style>
 </head>
@@ -106,13 +53,12 @@
 
 <aside id="sidebar"></aside>
 
-<!-- ===== 密码门（未解锁前覆盖页面）===== -->
 <div id="lock">
     <div class="lock-box">
         <h3>家庭时光</h3>
-        <p class="hint">请输入访问密码</p>
+        <p class="hint">此页内容已加密，请输入访问密码</p>
         <input id="lock-input" type="password" placeholder="密码" autocomplete="off" autocapitalize="off" spellcheck="false">
-        <button id="lock-btn" type="button">进 入</button>
+        <button id="lock-btn" type="button">解 锁</button>
         <p class="msg" id="lock-msg"></p>
         <p class="back"><a href="/index.html">← 返回首页</a></p>
     </div>
@@ -120,49 +66,72 @@
 
 <main id="main">
     <section id="page-content">
-
-        <div class="page-header">
-            <h2>家庭时光</h2>
-            <p>Family Moments</p>
-        </div>
-
-        <div class="placeholder-block">内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。</div>
-        <div class="placeholder-block">内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。</div>
-        <div class="placeholder-block">内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。内容待添加。</div>
-
+        <div id="family-content"></div>
     </section>
 </main>
 
+<!-- 加密内容（PBKDF2-SHA256 250k + AES-GCM；源码内仅有密文） -->
+<script id="enc" type="application/json">{"v": 1, "iter": 250000, "salt": "XRY7MC59POtoN8HlsHN4QQ==", "iv": "CXVGOIlQ0s5PK0iu", "ct": "XMzB8v+vkRXmRynOZp7NRT3jf05MP43kRivYKHnuvLCJaEDVDBAtxgHa3lNJ7SaQC2kvOOprlFRnm4K9CS+OvMPTFyhMc2IzGPjc2xj6fd68OosW+e9hsd2a99c6FbPwKNcYckFiF2Xu3wLWrx4uqSNHcqacMz3ka/QZ7SRwtndR5m/UH8f4SFCX5hKYO7g8V7cDtfPD8ntwP14NQ/k+WJ21gcqn21taYueCX2NC4ub7fSbBKzvx3Ig2sxmGAh9WBeSwH8S+vVi4j4YAmX4/lIlVA8MGBQyMwdXsZZv9EOjMKyuyEAJHgtEcRXfem7dsS9tGCdyCIb/baPrUAncnJsw2/P0NCJcBoqtEqFtn82Rw6WBx7deqjz6OaXkNMiL/DqATNhZgGdt/zOe4sX0JtXz0V8BwuwDy+3ySMdbfKCC1i1aIeL5CdSM9MUqJ+ZXbYp4r8p5+3ShQI8Y8L14AAUl4mmv6tCbi2c+NW/D9jzPJkH7Vb911i8XlGbLfOWkgws2RzR/H8gaB+dfuVHb4gouUx1HgXGvumBA/bVVx3Sw6PbkkbZ55tzCvqPryasqTIx0lE+EwaPz/XtaqI0BuNHaBEY6fnzs/0aUoZg4Uzd3ztiaoBSmMSnaMfMdilOtBdkgn0/HAXK16GTJv/RCKhtPjpVhPPl/slWbAGB+nD+Zb9BRs9VFj9XvyMXI0udiUEkyfkjCimddD0BZ5yq5+NeNiwMDi38dFkh5onnr9SQ8nfWqJZREfP/1s+h12Weeq9Mji/p80vvYHEOdlZaLKPOYwi07RWmZT18VplxY5JtQ/Lht8laDPhV2CH05NUz9sWLPjPXXeTlC9S1Yu9BxyHmRxHtpnZMRpDljBoNvMbhE73r9vH87r4dLielFeWje5raHw+joHL9nj125WqehqNVnS5rWA6NFfx1C/oCiGuok="}</script>
+
 <script src="../js/sidebar.js"></script>
 <script>
-/* 家庭时光 · 轻量密码门（前端校验，仅作防闲人查看用） */
 (function () {
-    var KEY = 'bHl6Nzc3'; // 访问口令（base64）
     var lock = document.getElementById('lock');
     var box = lock.querySelector('.lock-box');
     var input = document.getElementById('lock-input');
     var btn = document.getElementById('lock-btn');
     var msg = document.getElementById('lock-msg');
+    var enc = document.getElementById('enc');
+    var target = document.getElementById('family-content');
 
     document.body.style.overflow = 'hidden';
 
-    function unlock() {
-        lock.style.display = 'none';
-        document.body.style.overflow = '';
+    function b64ToBytes(b64) {
+        var s = atob(b64), u = new Uint8Array(s.length);
+        for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i);
+        return u;
     }
-    function fail() {
-        msg.textContent = '密码不正确，请重试';
+    function fail(text) {
+        msg.textContent = text || '密码不正确，请重试';
         box.classList.remove('shake');
         void box.offsetWidth;
         box.classList.add('shake');
         input.value = '';
         input.focus();
+        btn.disabled = false;
+        btn.textContent = '解 锁';
     }
-    function attempt() {
-        var v = input.value.trim();
-        var ok = false;
-        try { ok = (v === atob(KEY)); } catch (e) { ok = false; }
-        if (ok) { unlock(); } else { fail(); }
+
+    var P;
+    try { P = JSON.parse(enc.textContent); } catch (e) { P = null; }
+
+    if (!window.crypto || !window.crypto.subtle) {
+        btn.disabled = true;
+        msg.style.color = '#9ab7a6';
+        msg.textContent = '当前环境不支持解密（请通过 https 访问）';
+        return;
+    }
+
+    async function attempt() {
+        if (!P) { fail('页面数据缺失'); return; }
+        var pw = input.value.trim();
+        if (!pw) { input.focus(); return; }
+        btn.disabled = true;
+        btn.textContent = '解锁中…';
+        msg.textContent = '';
+        try {
+            var salt = b64ToBytes(P.salt), iv = b64ToBytes(P.iv), ct = b64ToBytes(P.ct);
+            var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+            var key = await crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt: salt, iterations: P.iter, hash: 'SHA-256' },
+                base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+            var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ct);
+            target.innerHTML = new TextDecoder().decode(pt);
+            lock.style.display = 'none';
+            document.body.style.overflow = '';
+        } catch (e) {
+            fail();
+        }
     }
 
     btn.addEventListener('click', attempt);
