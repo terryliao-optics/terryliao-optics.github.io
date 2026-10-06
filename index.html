@@ -82,26 +82,30 @@
         }
         #cover .cover-inner {
             position: relative; z-index: 2; text-align: center;
-            padding: 0 24px; transform: translateY(-3%);
+            padding: 0 24px;
+        }
+        #cover .cover-hint,
+        #cover .cover-date,
+        #cover .cover-time {
+            font-family: 'Hanyi Senty Song', 'Noto Serif SC', 'STSong', serif;
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65);
         }
         #cover .cover-hint {
-            font-family: 'Noto Serif SC', 'STSong', serif;
             font-size: clamp(0.95rem, 1.6vw, 1.25rem);
             letter-spacing: 0.35em; text-indent: 0.35em;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             animation: coverPulse 2.6s ease-in-out infinite;
         }
-        #cover .cover-clock {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: clamp(3.4rem, 10vw, 8.5rem);
-            line-height: 1;
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            color: rgba(255, 255, 255, 0.92);
-            text-shadow: 0 4px 34px rgba(0, 0, 0, 0.55);
-            font-variant-numeric: tabular-nums;
+        #cover .cover-date {
+            font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+            letter-spacing: 0.14em;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        #cover .cover-time {
+            font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+            letter-spacing: 0.16em;
         }
         @keyframes coverPulse {
             0%, 100% { opacity: 0.72; }
@@ -120,7 +124,8 @@
     </video>
     <div class="cover-inner">
         <div class="cover-hint">点击任意键游览</div>
-        <div class="cover-clock" id="cover-clock">--:--</div>
+        <div class="cover-date" id="cover-date">--</div>
+        <div class="cover-time" id="cover-time">--:--</div>
     </div>
 </div>
 
@@ -199,17 +204,20 @@
 
 <script src="js/sidebar.js"></script>
 <script>
-/* 进入页：实时系统时间 + 点击/按任意键进入 */
+/* 进入页：实时日期/系统时间 + 点击或按键进入（滚轮不触发） */
 (function () {
     var cover = document.getElementById('cover');
     var video = document.getElementById('cover-video');
-    var clock = document.getElementById('cover-clock');
+    var elDate = document.getElementById('cover-date');
+    var elTime = document.getElementById('cover-time');
+    var WEEK = ['日', '一', '二', '三', '四', '五', '六'];
 
     function tick() {
         var d = new Date();
+        elDate.textContent = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 星期' + WEEK[d.getDay()];
         var hh = String(d.getHours()).padStart(2, '0');
         var mm = String(d.getMinutes()).padStart(2, '0');
-        clock.textContent = hh + ':' + mm;
+        elTime.textContent = hh + ':' + mm;
     }
     tick();
     setInterval(tick, 1000);
@@ -234,16 +242,15 @@
         document.removeEventListener('click', enter, true);
         document.removeEventListener('keydown', enter, true);
         document.removeEventListener('touchstart', enter, true);
-        document.removeEventListener('wheel', enter, true);
         setTimeout(function () {
             cover.style.display = 'none';
             if (video) { try { video.pause(); } catch (e) {} }
         }, 850);
     }
+    /* 只有「鼠标点击 / 触摸 / 键盘按键」进入；滚轮不触发 */
     document.addEventListener('click', enter, true);
     document.addEventListener('keydown', enter, true);
     document.addEventListener('touchstart', enter, true);
-    document.addEventListener('wheel', enter, { passive: true, capture: true });
 })();
 </script>
 </body>
