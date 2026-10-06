@@ -65,9 +65,64 @@
             color: #b5b5b5;
             letter-spacing: 0.03em;
         }
+
+        /* ===== 进入页（动态壁纸封面）===== */
+        #cover {
+            position: fixed; inset: 0; z-index: 10000;
+            background: #0b1020 center/cover no-repeat;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease;
+        }
+        #cover.hide { opacity: 0; pointer-events: none; }
+        #cover video {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        #cover .cover-inner {
+            position: relative; z-index: 2; text-align: center;
+            padding: 0 24px; transform: translateY(-3%);
+        }
+        #cover .cover-hint {
+            font-family: 'Noto Serif SC', 'STSong', serif;
+            font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+            letter-spacing: 0.35em; text-indent: 0.35em;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.65);
+            margin-bottom: 20px;
+            animation: coverPulse 2.6s ease-in-out infinite;
+        }
+        #cover .cover-clock {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(3.4rem, 10vw, 8.5rem);
+            line-height: 1;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 4px 34px rgba(0, 0, 0, 0.55);
+            font-variant-numeric: tabular-nums;
+        }
+        @keyframes coverPulse {
+            0%, 100% { opacity: 0.72; }
+            50% { opacity: 1; }
+        }
+        body.cover-locked { overflow: hidden; }
     </style>
 </head>
-<body>
+<body class="cover-locked">
+
+<!-- ========== 进入页：动态壁纸封面 ========== -->
+<div id="cover">
+    <video id="cover-video" autoplay muted loop playsinline preload="auto"
+           poster="Images/hero/wallpaper.jpg">
+        <source src="Images/hero/wallpaper.mp4" type="video/mp4">
+    </video>
+    <div class="cover-inner">
+        <div class="cover-hint">点击任意键游览</div>
+        <div class="cover-clock" id="cover-clock">--:--</div>
+    </div>
+</div>
 
 <!-- ========== 侧边栏 ========== -->
 <aside id="sidebar"></aside>
@@ -143,5 +198,53 @@
 </main>
 
 <script src="js/sidebar.js"></script>
+<script>
+/* 进入页：实时系统时间 + 点击/按任意键进入 */
+(function () {
+    var cover = document.getElementById('cover');
+    var video = document.getElementById('cover-video');
+    var clock = document.getElementById('cover-clock');
+
+    function tick() {
+        var d = new Date();
+        var hh = String(d.getHours()).padStart(2, '0');
+        var mm = String(d.getMinutes()).padStart(2, '0');
+        clock.textContent = hh + ':' + mm;
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // 移动端 / 省流量 / 减少动态效果：不加载视频，用静态封面
+    var small = window.matchMedia('(max-width: 760px)').matches;
+    var saveData = navigator.connection && navigator.connection.saveData;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (small || saveData || reduce) {
+        if (video) { video.remove(); }
+    } else if (video) {
+        var p = video.play();
+        if (p && p.catch) { p.catch(function () {}); }
+    }
+
+    var done = false;
+    function enter() {
+        if (done) { return; }
+        done = true;
+        cover.classList.add('hide');
+        document.body.classList.remove('cover-locked');
+        document.removeEventListener('click', enter, true);
+        document.removeEventListener('keydown', enter, true);
+        document.removeEventListener('touchstart', enter, true);
+        document.removeEventListener('wheel', enter, true);
+        setTimeout(function () {
+            cover.style.display = 'none';
+            if (video) { try { video.pause(); } catch (e) {} }
+        }, 850);
+    }
+    document.addEventListener('click', enter, true);
+    document.addEventListener('keydown', enter, true);
+    document.addEventListener('touchstart', enter, true);
+    document.addEventListener('wheel', enter, { passive: true, capture: true });
+})();
+</script>
 </body>
 </html>
