@@ -18,6 +18,7 @@
                 <li><a href="/hobbies/tabletennis.html">乒乓球</a></li>
                 <li><a href="/hobbies/music.html">音乐</a></li>
                 <li><a href="/hobbies/socialscience.html">社科</a></li>
+                <li><a href="/hobbies/wallpaper-corridor.html">壁纸走廊</a></li>
             </ul>
         </div>
         <div class="nav-section nav-toggle-section" id="shenjing-section">
@@ -48,7 +49,8 @@
 
         // Auto-open active section based on current URL
         if (currentPath.includes('football') || currentPath.includes('tabletennis') ||
-            currentPath.includes('music') || currentPath.includes('socialscience')) {
+            currentPath.includes('music') || currentPath.includes('socialscience') ||
+            currentPath.includes('wallpaper-corridor')) {
             document.getElementById('wanxiang-section').classList.add('open');
         }
         if (currentPath.includes('optics') || currentPath.includes('math') ||

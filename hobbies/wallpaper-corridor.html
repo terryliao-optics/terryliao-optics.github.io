@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="壁纸走廊 — Terry Liao 的个人壁纸收藏，滚动浏览。">
+    <meta property="og:title" content="壁纸走廊 — Terry Liao">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://terryliao-optics.github.io/hobbies/wallpaper-corridor.html">
+    <meta property="og:image" content="https://terryliao-optics.github.io/Images/wallpaper-corridor/01.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://terryliao-optics.github.io/hobbies/wallpaper-corridor.html">
+    <title>壁纸走廊 — Terry Liao</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== 壁纸走廊（coverflow 式横向浏览）===== */
+        #corridor { max-width: 100%; }
+        .corridor-stage {
+            position: relative;
+            height: min(60vh, 600px);
+            margin: 4px 0 18px;
+            overflow: hidden;
+        }
+        .corridor-stage .slide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: min(56vw, 880px);
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+            background: #10141c;
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.55s ease;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+        .corridor-stage .slide.clickable { cursor: pointer; }
+        .corridor-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 6px;
+        }
+        .corridor-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid #c8e6d4;
+            background: #f4faf7;
+            color: #1e6b3f;
+            font-size: 1.4em;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.1s;
+        }
+        .corridor-btn:hover { background: #e2f4ea; border-color: #2E8B57; }
+        .corridor-btn:active { transform: scale(0.94); }
+        .corridor-counter {
+            font-family: var(--font-en);
+            letter-spacing: 0.18em;
+            color: #7aab8a;
+            font-size: 0.95em;
+            min-width: 92px;
+            text-align: center;
+        }
+        .corridor-tip {
+            text-align: center;
+            color: #b0b8b3;
+            font-size: 0.82em;
+            letter-spacing: 0.06em;
+            margin-top: 12px;
+        }
+        @media (max-width: 900px) {
+            .corridor-stage { height: min(46vh, 380px); }
+            .corridor-stage .slide { width: 74vw; }
+        }
+    </style>
+</head>
+<body>
+
+<aside id="sidebar"></aside>
+
+<main id="main">
+    <section id="page-content">
+
+        <div class="page-header">
+            <h2>壁纸走廊</h2>
+            <p>Wallpaper Corridor · 万象天地</p>
+        </div>
+
+        <div id="corridor">
+            <div class="corridor-stage" id="corridor-stage"></div>
+            <div class="corridor-bar">
+                <button id="corridor-prev" class="corridor-btn" type="button" aria-label="上一张">‹</button>
+                <span id="corridor-counter" class="corridor-counter">1 / 44</span>
+                <button id="corridor-next" class="corridor-btn" type="button" aria-label="下一张">›</button>
+            </div>
+            <p class="corridor-tip">滚动鼠标滚轮 · 按 ← → 方向键 · 或点击两侧图片切换</p>
+        </div>
+
+    </section>
+</main>
+
+<script src="../js/sidebar.js"></script>
+<script>
+(function () {
+    var N = 44;
+    var DIR = '../Images/wallpaper-corridor/';
+    var stage = document.getElementById('corridor-stage');
+    var counter = document.getElementById('corridor-counter');
+    var corridor = document.getElementById('corridor');
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function srcOf(i) { return DIR + pad(i) + '.webp'; }  // i: 1..N
+
+    var slides = [];
+    for (var i = 1; i <= N; i++) {
+        var img = document.createElement('img');
+        img.className = 'slide';
+        img.alt = '壁纸 ' + i;
+        img.dataset.idx = i;
+        stage.appendChild(img);
+        slides.push(img);
+    }
+
+    var active = 1; // 1..N
+    var busy = false;
+
+    function ensureLoaded(d) {
+        if (d < 0 || d >= slides.length) { return; }
+        var img = slides[d];
+        if (!img.getAttribute('src')) { img.src = srcOf(d + 1); }
+    }
+
+    function render() {
+        var W = slides[0].offsetWidth || 800;
+        for (var d = 0; d < N; d++) {
+            var img = slides[d];
+            var k = (d + 1) - active;                 // 相对偏移
+            if (k > N / 2) { k -= N; }                // 环形
+            if (k < -N / 2) { k += N; }
+            var a = Math.abs(k);
+            var tx = k * (W * 0.60);
+            var s, op, z;
+            if (a === 0) { s = 1.0; op = 1; z = 40; }
+            else if (a === 1) { s = 0.80; op = 0.62; z = 30; }
+            else if (a === 2) { s = 0.64; op = 0.28; z = 20; }
+            else { s = 0.5; op = 0; z = 10; tx = k * (W * 0.72); }
+            img.style.transform = 'translate(-50%,-50%) translateX(' + tx + 'px) scale(' + s + ')';
+            img.style.opacity = op;
+            img.style.zIndex = z;
+            img.style.pointerEvents = (a <= 2) ? 'auto' : 'none';
+            img.classList.toggle('clickable', a !== 0 && a <= 2);
+            if (a <= 2) { ensureLoaded(d); }
+        }
+        counter.textContent = active + ' / ' + N;
+    }
+
+    function go(step) {
+        active = ((active - 1 + step) % N + N) % N + 1;
+        render();
+    }
+
+    function withLock(fn) {
+        if (busy) { return; }
+        busy = true;
+        fn();
+        setTimeout(function () { busy = false; }, 220);
+    }
+
+    // 点击侧边图片切换
+    stage.addEventListener('click', function (e) {
+        var t = e.target;
+        if (!t || !t.classList || !t.classList.contains('slide')) { return; }
+        var idx = parseInt(t.dataset.idx, 10);
+        if (!idx || idx === active) { return; }
+        withLock(function () { active = idx; render(); });
+    });
+
+    document.getElementById('corridor-prev').addEventListener('click', function () { withLock(function () { go(-1); }); });
+    document.getElementById('corridor-next').addEventListener('click', function () { withLock(function () { go(1); }); });
+
+    // 鼠标滚轮：切换图片（在走廊区域内）
+    corridor.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        if (busy) { return; }
+        var dir = (e.deltaY > 0) ? 1 : -1;
+        withLock(function () { go(dir); });
+    }, { passive: false });
+
+    // 方向键
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { withLock(function () { go(1); }); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { withLock(function () { go(-1); }); }
+    });
+
+    // 触屏滑动
+    var sx = 0;
+    corridor.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    corridor.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 40) { withLock(function () { go(dx < 0 ? 1 : -1); }); }
+    }, { passive: true });
+
+    window.addEventListener('resize', render);
+    window.addEventListener('load', render);
+    render();
+})();
+</script>
+</body>
+</html>
